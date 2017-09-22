@@ -1,8 +1,8 @@
 # Edits
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/edits`. To experiment with that code, run `bin/console` for an interactive prompt.
+A collection of edit distance algorithms in Ruby.
 
-TODO: Delete this and the text above, and describe your gem
+Includes Levenshtein, Restricted Edit (Optimal Alignment) and Damerau-Levenshtein distances, and Jaro and Jaro-Winkler similarity.
 
 ## Installation
 
@@ -22,7 +22,66 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Levenshtein
+
+Edit distance, accounting for deletion, addition and substitution.
+
+```ruby
+Edits::Levenshtein.distance "raked", "bakers"
+# => 3
+Edits::Levenshtein.distance "iota", "atom"
+# => 4
+Edits::Levenshtein.distance "acer", "earn"
+# => 4
+
+# Max distance
+Edits::Levenshtein.distance_with_max "iota", "atom", 2
+# => 2
+Edits::Levenshtein.most_similar "atom", %w[tram atlas rota racer]
+# => "atlas"
+```
+
+### Restricted Edit (Optimal Alignment)
+
+Edit distance, accounting for deletion, addition, substitution and swapped
+characters.
+
+```ruby
+Edits::RestrictedEdit.distance "raked", "bakers"
+# => 3
+Edits::RestrictedEdit.distance "iota", "atom"
+# => 3
+Edits::RestrictedEdit.distance "acer", "earn"
+# => 4
+```
+
+### Damerau-Levenshtein
+
+Edit distance, accounting for deletions, additions, substitution and
+transposition.
+
+```ruby
+Edits::DamerauLevenshtein.distance "raked", "bakers"
+# => 3
+Edits::DamerauLevenshtein.distance "iota", "atom"
+# => 3
+Edits::DamerauLevenshtein.distance "acer", "earn"
+# => 3
+```
+
+### Jaro & Jaro-Winkler
+
+```ruby
+Edits::Jaro.similarity "information", "informant"
+# => 0.90235690235690236
+Edits::Jaro.distance "information", "informant"
+# => 0.097643097643097643
+
+Edits::JaroWinkler.similarity "information", "informant"
+# => 0.94141414141414137
+Edits::JaroWinkler.distance "information", "informant"
+# => 0.05858585858585863
+```
 
 ## Development
 
@@ -32,7 +91,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/edits.
+Bug reports and pull requests are welcome on GitHub at https://github.com/tcrouch/edits.
 
 ## License
 
