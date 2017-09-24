@@ -26,7 +26,7 @@ module Edits
       return 0.0 if m.zero?
 
       m = m.to_f
-      (1.0 / 3) * ((m / seq1.length) + (m / seq2.length) + ((m - t) / m))
+      ((m / seq1.length) + (m / seq2.length) + ((m - t) / m)) / 3
     end
 
     # Calculate Jaro distance
@@ -45,11 +45,7 @@ module Edits
     # @param (see #distance)
     # @return [(Integer, Integer)] matches and transpositions
     def self.jaro_matches(seq1, seq2)
-      if seq1.length > seq2.length
-        temp = seq1
-        seq1 = seq2
-        seq2 = temp
-      end
+      seq1, seq2 = seq2, seq1 if seq1.length > seq2.length
 
       # search range: (max(|A|, |B|) / 2) - 1
       range = (seq2.length / 2) - 1

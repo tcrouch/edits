@@ -18,11 +18,7 @@ module Edits
     # @param seq2 [String, Array]
     # @return [Integer]
     def self.distance(seq1, seq2)
-      if seq1.length > seq2.length
-        temp = seq1
-        seq1 = seq2
-        seq2 = temp
-      end
+      seq1, seq2 = seq2, seq1 if seq1.length > seq2.length
 
       # array of Integer codepoints outperforms String
       seq1 = seq1.codepoints if seq1.is_a? String
@@ -77,11 +73,7 @@ module Edits
     # @param max [Integer] maximum distance
     # @return [Integer]
     def self.distance_with_max(seq1, seq2, max)
-      if seq1.length > seq2.length
-        temp = seq1
-        seq1 = seq2
-        seq2 = temp
-      end
+      seq1, seq2 = seq2, seq1 if seq1.length > seq2.length
 
       rows = seq1.length
       cols = seq2.length
