@@ -1,8 +1,13 @@
 # Edits
 
+[![Build Status](https://travis-ci.org/tcrouch/edits.svg?branch=master)](https://travis-ci.org/tcrouch/edits)
+[![Code Climate](https://codeclimate.com/github/tcrouch/edits/badges/gpa.svg)](https://codeclimate.com/github/tcrouch/edits)
+[![Inline docs](http://inch-ci.org/github/tcrouch/edits.svg?branch=master)](http://inch-ci.org/github/tcrouch/edits)
+[![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](http://rubydoc.info/github/tcrouch/edits)
+
 A collection of edit distance algorithms in Ruby.
 
-Includes Levenshtein, Restricted Edit (Optimal Alignment) and Damerau-Levenshtein distances, and Jaro and Jaro-Winkler similarity.
+Includes Levenshtein, Restricted Edit (Optimal Alignment) and Damerau-Levenshtein distances, and Jaro & Jaro-Winkler similarity.
 
 ## Installation
 
