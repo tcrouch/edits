@@ -48,8 +48,9 @@ Edits::Levenshtein.most_similar "atom", %w[tram atlas rota racer]
 
 ### Restricted Edit (Optimal Alignment)
 
-Edit distance, accounting for deletion, addition, substitution and swapped
-characters.
+Edit distance, accounting for deletion, addition, substitution and
+transposition (two adjacent characters are swapped). This variant is
+restricted by the condition that no sub-string is edited more than once.
 
 ```ruby
 Edits::RestrictedEdit.distance "raked", "bakers"
@@ -63,7 +64,7 @@ Edits::RestrictedEdit.distance "acer", "earn"
 ### Damerau-Levenshtein
 
 Edit distance, accounting for deletions, additions, substitution and
-transposition.
+transposition (two adjacent characters are swapped).
 
 ```ruby
 Edits::DamerauLevenshtein.distance "raked", "bakers"

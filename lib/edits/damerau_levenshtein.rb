@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 module Edits
-  # Implemention of the Damerau/Levenshtein distance algorithm.
+  # Implements the Damerau/Levenshtein distance algorithm.
   #
   # Determines distance between two strings by counting edits, identifying:
   # * Insertion
   # * Deletion
   # * Substitution
-  # * Transposition
+  # * Adjacent transposition
   module DamerauLevenshtein
     # Calculate the Damerau/Levenshtein distance of two sequences.
     #
@@ -20,7 +20,7 @@ module Edits
     def self.distance(seq1, seq2)
       seq1, seq2 = seq2, seq1 if seq1.length > seq2.length
 
-      # array of Integer codepoints outperforms String
+      # array of codepoints outperforms String
       seq1 = seq1.codepoints if seq1.is_a? String
       seq2 = seq2.codepoints if seq2.is_a? String
 
@@ -30,7 +30,7 @@ module Edits
       return rows if cols.zero?
 
       # 'infinite' edit distance for padding cost matrix.
-      # Can be any value greater than max[rows, cols]
+      # Can be any value > max[rows, cols]
       inf = rows + cols
 
       # Initialize first two rows of cost matrix.

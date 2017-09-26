@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module Edits
+  # Implements Jaro similarity algorithm.
+  #
   # @see https://en.wikipedia.org/wiki/Jaro-Winkler_distance
   module Jaro
     # Calculate Jaro similarity
@@ -14,7 +16,7 @@ module Edits
     #   # => 0.9023569023569024
     # @param seq1 [String, Array]
     # @param seq2 [String, Array]
-    # @return [Float]
+    # @return [Float] similarity, between 0.0 (none) and 1.0 (identical)
     def self.similarity(seq1, seq2)
       return 1.0 if seq1 == seq2
       return 0.0 if seq1.empty? || seq2.empty?
@@ -31,11 +33,13 @@ module Edits
 
     # Calculate Jaro distance
     #
+    # `Dj = 1 - Sj`
+    #
     # @example
     #   Edits::Jaro.distance("information", "informant")
     #   # => 0.09764309764309764
     # @param (see #distance)
-    # @return [Float]
+    # @return [Float] distance, between 0.0 (identical) and 1.0 (distant)
     def self.distance(str1, str2)
       1.0 - similarity(str1, str2)
     end

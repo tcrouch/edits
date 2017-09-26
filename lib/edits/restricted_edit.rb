@@ -8,7 +8,10 @@ module Edits
   # * Insertion
   # * Deletion
   # * Substitution
-  # * Swapped items
+  # * Adjacent transposition
+  #
+  # This variant is restricted by the condition that no sub-string is edited
+  # more than once.
   module RestrictedEdit
     # Calculate the Restricted Damerau-Levenshtein distance (Optimal Alignment)
     # of two sequences.
@@ -23,7 +26,7 @@ module Edits
     def self.distance(seq1, seq2)
       seq1, seq2 = seq2, seq1 if seq1.length > seq2.length
 
-      # array of Integer codepoints outperforms String
+      # array of codepoints outperforms String
       seq1 = seq1.codepoints if seq1.is_a? String
       seq2 = seq2.codepoints if seq2.is_a? String
 
@@ -32,7 +35,7 @@ module Edits
       return cols if rows.zero?
       return rows if cols.zero?
 
-      # previous two rows of cost matrix are retained
+      # retain previous two rows of cost matrix
       lastlast_row = []
       last_row = []
 
@@ -44,7 +47,7 @@ module Edits
       curr_row = 0.upto(cols).to_a
 
       rows.times do |row|
-        # rotate rows
+        # rotate row arrays
         curr_row, last_row, lastlast_row = lastlast_row, curr_row, last_row
 
         curr_row[0] = row + 1

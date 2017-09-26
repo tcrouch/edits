@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 module Edits
-  # Implementation of Levenshtein distance algorithm.
+  # Implements Levenshtein distance algorithm.
   #
   # Determines distance between two string by counting edits, identifying:
-  # - Insertion
-  # - Deletion
-  # - Substitution
+  # * Insertion
+  # * Deletion
+  # * Substitution
   module Levenshtein
     # Calculate the Levenshtein (edit) distance of two sequences.
     #
@@ -20,7 +20,7 @@ module Edits
     def self.distance(seq1, seq2)
       seq1, seq2 = seq2, seq1 if seq1.length > seq2.length
 
-      # array of Integer codepoints outperforms String
+      # array of codepoints outperforms String
       seq1 = seq1.codepoints if seq1.is_a? String
       seq2 = seq2.codepoints if seq2.is_a? String
 
@@ -81,6 +81,7 @@ module Edits
       return rows > max ? max : rows if cols.zero?
       return max if (cols - rows) >= max
 
+      # array of codepoints outperforms String
       seq1 = seq1.codepoints if seq1.is_a? String
       seq2 = seq2.codepoints if seq2.is_a? String
 

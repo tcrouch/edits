@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module Edits
+  # Implements Hamming distance algorithm
+  #
   # @see https://en.wikipedia.org/wiki/Hamming_distance
   module Hamming
     # Calculate the Hamming distance between two sequences.

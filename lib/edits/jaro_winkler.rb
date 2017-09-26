@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module Edits
+  # Implements Jaro-Winkler similarity algorithm.
+  #
   # @see https://en.wikipedia.org/wiki/Jaro-Winkler_distance
   module JaroWinkler
     # Prefix scaling factor for jaro-winkler metric. Default is 0.1
@@ -13,9 +15,9 @@ module Edits
 
     # Calculate Jaro-Winkler similarity of given strings
     #
-    # Adds weight to Jaro distance according to the length of a common prefix
+    # Adds weight to Jaro similarity according to the length of a common prefix
     # of up to 4 letters, where exists. The additional weighting is only
-    # applied when the original distance passes a threshold.
+    # applied when the original similarity passes a threshold.
     #
     # `Sw = Sj + (l * p * (1 - Dj))`
     #
@@ -29,7 +31,7 @@ module Edits
     # @param seq2 [String, Array]
     # @param threshold [Float] threshold for applying Winkler prefix weighting
     # @param weight [Float] weighting for common prefix, should not exceed 0.25
-    # @return [Float]
+    # @return [Float] similarity, between 0.0 (none) and 1.0 (identical)
     def self.similarity(
       seq1, seq2,
       threshold: WINKLER_THRESHOLD,
@@ -60,7 +62,7 @@ module Edits
     #   Edits::JaroWinkler.distance("information", "informant")
     #   # => 0.05858585858585863
     # @param (see #distance)
-    # @return [Float]
+    # @return [Float] distance, between 0.0 (identical) and 1.0 (distant)
     def self.distance(
       seq1, seq2,
       threshold: WINKLER_THRESHOLD,
