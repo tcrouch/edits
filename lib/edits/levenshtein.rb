@@ -84,37 +84,41 @@ module Edits
       seq1 = seq1.codepoints if seq1.is_a? String
       seq2 = seq2.codepoints if seq2.is_a? String
 
+      # 'infinite' edit distance for padding cost matrix.
+      # Can be any value > max[rows, cols]
+      inf = cols + 1
+
+      # retain previous row of cost matrix
       last_row = 0.upto(cols).to_a
 
       rows.times do |row|
-        last_col_cost = row + 1
-        seq1_item = seq1[row]
-
+        # Ukkonen cut-off
         min_col = row > max ? row - max : 0
         max_col = row + max
         max_col = cols - 1 if max_col > cols - 1
+
+        prev_col_cost = min_col.zero? ? row + 1 : inf
+        seq1_item = seq1[row]
         diagonal = cols - rows + row
 
-        cols.times do |col|
+        min_col.upto(max_col) do |col|
           return max if diagonal == col && last_row[col] >= max
-          col_cost =
-            if col < min_col || col > max_col
-              max + 1
-            else
-              # step cost is min of operation costs
-              deletion = last_row[col + 1] + 1
-              insertion = last_col_cost + 1
-              substitution = last_row[col] + (seq1_item == seq2[col] ? 0 : 1)
 
-              cost = deletion < insertion ? deletion : insertion
-              substitution < cost ? substitution : cost
-            end
+          # | Xs | Xd |
+          # | Xi | ?  |
+          # substitution, deletion, insertion
+          cost = [
+            last_row[col] + (seq1_item == seq2[col] ? 0 : 1),
+            last_row[col + 1] + 1,
+            prev_col_cost + 1
+          ].min
 
-          last_row[col] = last_col_cost
-          last_col_cost = col_cost
+          # overwrite previous row as we progress
+          last_row[col] = prev_col_cost
+          prev_col_cost = cost
         end
 
-        last_row[cols] = last_col_cost
+        last_row[cols] = prev_col_cost
       end
 
       last_row[cols] > max ? max : last_row[cols]
