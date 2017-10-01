@@ -35,6 +35,7 @@ module Edits
       # previous two rows of cost matrix are retained
       lastlast_row = []
       last_row = []
+
       # Initialize first row of cost matrix.
       # The full initial state where cols=3, rows=2 would be:
       #   [[0, 1, 2, 3],
@@ -43,13 +44,10 @@ module Edits
       curr_row = 0.upto(cols).to_a
 
       rows.times do |row|
-        lastlast_row = last_row
-        last_row = curr_row
+        # rotate rows
+        curr_row, last_row, lastlast_row = lastlast_row, curr_row, last_row
 
-        # generate next row of cost matrix
-        curr_row = Array.new(cols + 1, 0)
         curr_row[0] = row + 1
-
         curr_item = seq1[row]
 
         cols.times do |col|
