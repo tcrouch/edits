@@ -61,20 +61,30 @@ RSpec.describe Edits::Levenshtein do
       end
     end
 
-    context "with 'foo', 'barbaz'" do
-      let(:a) { "foo" }
-      let(:b) { "barbaz" }
+    context "when max is 4" do
+      let(:max) { 4 }
 
-      context "when distance is 4" do
-        let(:max) { 4 }
+      cases.each do |(a, b, distance)|
+        context "with '#{a}', '#{b}'" do
+          let(:a) { a }
+          let(:b) { b }
 
-        it { is_expected.to eq 4 }
+          it { is_expected.to eq(distance > max ? max : distance) }
+        end
       end
 
-      context "when distance is 2" do
-        let(:max) { 2 }
+      context "with '', 'abcdfe'" do
+        let(:a) { "" }
+        let(:b) { "abcdfe" }
 
-        it { is_expected.to eq 2 }
+        it { is_expected.to eq max }
+      end
+
+      context "with 'abcdfe', ''" do
+        let(:a) { "abcdfe" }
+        let(:b) { "" }
+
+        it { is_expected.to eq max }
       end
     end
   end

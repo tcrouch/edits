@@ -77,9 +77,9 @@ module Edits
 
       rows = seq1.length
       cols = seq2.length
-      return cols if rows.zero?
-      return rows if cols.zero?
-      return max if (rows - cols).abs >= max
+      return cols > max ? max : cols if rows.zero?
+      return rows > max ? max : rows if cols.zero?
+      return max if (cols - rows) >= max
 
       seq1 = seq1.codepoints if seq1.is_a? String
       seq2 = seq2.codepoints if seq2.is_a? String
