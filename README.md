@@ -42,8 +42,8 @@ Edits::Levenshtein.distance "acer", "earn"
 # Max distance
 Edits::Levenshtein.distance_with_max "iota", "atom", 2
 # => 2
-Edits::Levenshtein.most_similar "atom", %w[tram atlas rota racer]
-# => "atlas"
+Edits::Levenshtein.most_similar "atom", %w[tree rota toes racer]
+# => "toes"
 ```
 
 ### Restricted Edit (Optimal Alignment)
@@ -59,6 +59,12 @@ Edits::RestrictedEdit.distance "iota", "atom"
 # => 3
 Edits::RestrictedEdit.distance "acer", "earn"
 # => 4
+
+# Max distance
+Edits::RestrictedEdit.distance_with_max "iota", "atom", 2
+# => 2
+Edits::RestrictedEdit.most_similar "atom", %w[tree rota toes racer]
+# => "rota"
 ```
 
 ### Damerau-Levenshtein

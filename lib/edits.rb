@@ -2,6 +2,7 @@
 
 require "edits/version"
 
+require "edits/compare"
 require "edits/damerau_levenshtein"
 require "edits/hamming"
 require "edits/jaro"

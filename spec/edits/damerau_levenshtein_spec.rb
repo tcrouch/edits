@@ -10,7 +10,7 @@ RSpec.describe Edits::DamerauLevenshtein do
     include_examples "levenshtein"
 
     [
-      # swaps
+      # simple transpositions
       ["a cat", "an act", 2],
       ["abc", "acb", 1],
       ["abc", "bac", 1],

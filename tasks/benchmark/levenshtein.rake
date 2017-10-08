@@ -5,7 +5,7 @@ require "benchmark/ips"
 require "edits"
 
 namespace :benchmark do
-  desc "distance vs. distance_with_max (x100)"
+  desc "levenshtein distance vs. distance_with_max (x100)"
   task :lev_max do
     words = File.read("/usr/share/dict/words")
       .split(/\n/).compact.shuffle(random: Random.new(1))
@@ -57,6 +57,65 @@ namespace :benchmark do
       x.report("with max 50") do
         words.each_cons(2) do |a, b|
           Edits::Levenshtein.distance_with_max a, b, 100
+        end
+      end
+
+      x.compare!
+    end
+  end
+
+  desc "restricted distance vs. distance_with_max (x100)"
+  task :restricted_max do
+    words = File.read("/usr/share/dict/words")
+      .split(/\n/).compact.shuffle(random: Random.new(1))
+      .take(101)
+
+    Benchmark.ips do |x|
+      x.report("distance") do
+        words.each_cons(2) do |a, b|
+          Edits::RestrictedEdit.distance a, b
+        end
+      end
+
+      x.report("with max 1") do
+        words.each_cons(2) do |a, b|
+          Edits::RestrictedEdit.distance_with_max a, b, 1
+        end
+      end
+
+      x.report("with max 2") do
+        words.each_cons(2) do |a, b|
+          Edits::RestrictedEdit.distance_with_max a, b, 2
+        end
+      end
+
+      x.report("with max 3") do
+        words.each_cons(2) do |a, b|
+          Edits::RestrictedEdit.distance_with_max a, b, 3
+        end
+      end
+
+      x.report("with max 4") do
+        words.each_cons(2) do |a, b|
+          Edits::RestrictedEdit.distance_with_max a, b, 4
+        end
+      end
+
+      x.report("with max 6") do
+        words.each_cons(2) do |a, b|
+          Edits::RestrictedEdit.distance_with_max a, b, 6
+        end
+      end
+
+      x.report("with max 8") do
+        words.each_cons(2) do |a, b|
+          Edits::RestrictedEdit.distance_with_max a, b, 8
+        end
+      end
+
+      x.report("with max 50") do
+        words.each_cons(2) do |a, b|
+          Edits::RestrictedEdit.distance_with_max a, b, 100
         end
       end
 

@@ -5,7 +5,7 @@ require "edits/levenshtein_shared"
 
 RSpec.describe Edits::Levenshtein do
   cases = [
-    # swaps
+    # simple transpositions
     ["a cat", "an act", 3],
     ["abc", "acb", 2],
     ["abc", "bac", 2],
