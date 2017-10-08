@@ -37,24 +37,25 @@ module Edits
       last_row = 0.upto(cols).to_a
 
       rows.times do |row|
-        last_col = row + 1
-
+        prev_col_cost = row + 1
         seq1_item = seq1[row]
 
         cols.times do |col|
-          deletion = last_row[col + 1] + 1
-          insertion = last_col + 1
-          substitution = last_row[col] + (seq1_item == seq2[col] ? 0 : 1)
-
+          # | Xs | Xd |
+          # | Xi | ?  |
           # step cost is min of operation costs
-          cost = deletion < insertion ? deletion : insertion
-          cost = substitution if substitution < cost
+          # substitution, deletion, insertion
+          cost = [
+            last_row[col] + (seq1_item == seq2[col] ? 0 : 1),
+            last_row[col + 1] + 1,
+            prev_col_cost + 1
+          ].min
 
           # overwrite previous row as we progress
-          last_row[col] = last_col
-          last_col = cost
+          last_row[col] = prev_col_cost
+          prev_col_cost = cost
         end
-        last_row[cols] = last_col
+        last_row[cols] = prev_col_cost
       end
 
       last_row[cols]

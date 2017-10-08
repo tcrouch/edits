@@ -51,22 +51,25 @@ module Edits
         curr_row, last_row, lastlast_row = lastlast_row, curr_row, last_row
 
         curr_row[0] = row + 1
-        curr_item = seq1[row]
+        seq1_item = seq1[row]
 
         cols.times do |col|
-          sub_cost = curr_item == seq2[col] ? 0 : 1
-          is_swap = sub_cost == 1 &&
+          sub_cost = seq1_item == seq2[col] ? 0 : 1
+          is_swap = sub_cost.positive? &&
             row.positive? && col.positive? &&
-            curr_item == seq2[col - 1] &&
+            seq1_item == seq2[col - 1] &&
             seq1[row - 1] == seq2[col]
 
-          deletion = last_row[col + 1] + 1
-          insertion = curr_row[col] + 1
-          substitution = last_row[col] + sub_cost
-
+          # | Xt |    |    |
+          # |    | Xs | Xd |
+          # |    | Xi | ?  |
           # step cost is min of operation costs
-          cost = deletion < insertion ? deletion : insertion
-          cost = substitution if substitution < cost
+          # substitution, deletion, insertion, transposition
+          cost = [
+            last_row[col] + sub_cost,
+            last_row[col + 1] + 1,
+            curr_row[col] + 1
+          ].min
 
           if is_swap
             swap = lastlast_row[col - 1] + 1

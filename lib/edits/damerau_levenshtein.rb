@@ -67,14 +67,14 @@ module Edits
 
           # TODO: do insertion/deletion need to be considered when
           # seq1_item == seq2_item ?
-          deletion = matrix[row][col + 1] + 1
-          insertion = matrix[row + 1][col] + 1
-          substitution = matrix[row][col] + sub_cost
-
-          # step cost is min of operation costs
-          cost = substitution < insertion ? substitution : insertion
-          cost = deletion if deletion < cost
-          cost = transposition if transposition < cost
+          #
+          # substitution, deletion, insertion, transposition
+          cost = [
+            matrix[row][col] + sub_cost,
+            matrix[row][col + 1] + 1,
+            matrix[row + 1][col] + 1,
+            transposition
+          ].min
 
           matrix[row + 1][col + 1] = cost
 
