@@ -1,7 +1,7 @@
 # Edits
 
 [![Build Status](https://travis-ci.org/tcrouch/edits.svg?branch=master)](https://travis-ci.org/tcrouch/edits)
-[![Code Climate](https://codeclimate.com/github/tcrouch/edits/badges/gpa.svg)](https://codeclimate.com/github/tcrouch/edits)
+[![codebeat badge](https://codebeat.co/badges/005039fa-25c2-4005-8974-97c1ae9ff6eb)](https://codebeat.co/projects/github-com-tcrouch-edits-master)
 [![Inline docs](http://inch-ci.org/github/tcrouch/edits.svg?branch=master)](http://inch-ci.org/github/tcrouch/edits)
 [![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](http://rubydoc.info/github/tcrouch/edits)
 
