@@ -11,7 +11,11 @@ Gem::Specification.new do |spec|
   spec.email         = ["tom.crouch@gmail.com"]
 
   spec.summary       = "A collection of edit distance algorithms."
-  # spec.description   = "TODO: Write a longer description or delete this line."
+  spec.description   = <<~DESCRIPTION
+    A collection of edit distance algorithms.
+    Includes Levenshtein, Restricted Edit (Optimal Alignment) and
+    Damerau-Levenshtein distances, and Jaro & Jaro-Winkler similarity.
+  DESCRIPTION
   spec.homepage      = "https://github.com/tcrouch/edits"
   spec.license       = "MIT"
 
