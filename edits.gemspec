@@ -12,9 +12,9 @@ Gem::Specification.new do |spec|
 
   spec.summary       = "A collection of edit distance algorithms."
   spec.description   = <<~DESCRIPTION
-    A collection of edit distance algorithms.
-    Includes Levenshtein, Restricted Edit (Optimal Alignment) and
-    Damerau-Levenshtein distances, and Jaro & Jaro-Winkler similarity.
+    Edit distance algorithms including Levenshtein,
+    Restricted Edit (Optimal Alignment) and Damerau-Levenshtein distances,
+    and Jaro & Jaro-Winkler similarity.
   DESCRIPTION
   spec.homepage      = "https://github.com/tcrouch/edits"
   spec.license       = "MIT"
@@ -26,10 +26,10 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
+  spec.add_development_dependency "benchmark-ips", "~> 2.7"
   spec.add_development_dependency "bundler", "~> 1.15"
   spec.add_development_dependency "rake", "~> 12.1"
-  spec.add_development_dependency "rspec", "~> 3.6"
-  spec.add_development_dependency "benchmark-ips", "~> 2.7"
   spec.add_development_dependency "redcarpet", "~> 3.4"
+  spec.add_development_dependency "rspec", "~> 3.6"
   spec.add_development_dependency "yard", "~> 0.9"
 end
