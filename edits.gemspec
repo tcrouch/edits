@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["tom.crouch@gmail.com"]
 
   spec.summary       = "A collection of edit distance algorithms."
-  spec.description   = <<~DESCRIPTION
+  spec.description   = <<-DESCRIPTION
     Edit distance algorithms including Levenshtein,
     Restricted Edit (Optimal Alignment) and Damerau-Levenshtein distances,
     and Jaro & Jaro-Winkler similarity.
