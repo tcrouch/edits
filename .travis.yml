@@ -2,8 +2,9 @@ sudo: false
 language: ruby
 cache: bundler
 rvm:
-  - 2.3.5
-  - 2.4.2
+  - 2.3
+  - 2.4.3
+  - 2.5
   - ruby-head
   - rbx-3
 matrix:
@@ -14,11 +15,17 @@ matrix:
 before_install:
   - gem update --system
   - gem install bundler
-deploy:
-  provider: rubygems
-  api_key:
-    secure: NKUWS12yMpsMtPeKL+4X56xZ02p5y4R+HYQmgvxFNajOS42aTMXncx4eTnuHoNdKbh+x5yci+lbPr+j5t9qWo5GzJsxjqnFW4lO2V5O1ONBzcAB/g6BPDMQsWbX34eBVafCEidNoOY1HhLlKerWzlsGRq+P4q+3WKLJihrl99pyv+EQykqS11/YVCsmFjrPVa/aGk84njbnI/kIDOY5HV2gVBazARixRO5y2AUg3hRUf2+Tu/X1ke80YBD9LazW2kRUzz0Rs+1vc653JtYn6MeK/bEkGWvN2Qs/k6Q2nNr6ni4v39Y07yylu1EnYh1H/0OT/H2hehxsjMQCQhDlVKbN7NTmOV026aWXA2HdSxmVhxQCIKRGW3Nm81kBj1/edXLpJActnLeex2iCMcXJk8yAAzF0q+vSHLld0w9Jx95kIJB4tnaonWJxcaWaX58HWFbdOuYKvQhXqcflI4KmNH8xXm/O0FIM8VEJRg9dojZ5S8Us3fZpBFZxVJ3H3Fcb406AmoIqcHOsqJ1GvBM8EdWkwuaH9GsUWf8pydgKFgStYUaKk8DDmJonT748emG4yw+78uMGWPoFxf+Mc8jazRxIaRiQbjVFUcLjaRkRFlL8UT9BB9k7c1egjvKhUo/pqV7KIEsAJrrh6zZIkz4h9AwxWpZjVj9+z63Kh6NC1lUI=
-  gem: edits
-  on:
-    tags: true
-    repo: tcrouch/edits
+jobs:
+  include:
+    - stage: gem release
+      if: tag IS present
+      rvm: 2.4.3
+      script: echo "Deploying to rubygems.org ..."
+      deploy:
+        provider: rubygems
+        api_key:
+          secure: NKUWS12yMpsMtPeKL+4X56xZ02p5y4R+HYQmgvxFNajOS42aTMXncx4eTnuHoNdKbh+x5yci+lbPr+j5t9qWo5GzJsxjqnFW4lO2V5O1ONBzcAB/g6BPDMQsWbX34eBVafCEidNoOY1HhLlKerWzlsGRq+P4q+3WKLJihrl99pyv+EQykqS11/YVCsmFjrPVa/aGk84njbnI/kIDOY5HV2gVBazARixRO5y2AUg3hRUf2+Tu/X1ke80YBD9LazW2kRUzz0Rs+1vc653JtYn6MeK/bEkGWvN2Qs/k6Q2nNr6ni4v39Y07yylu1EnYh1H/0OT/H2hehxsjMQCQhDlVKbN7NTmOV026aWXA2HdSxmVhxQCIKRGW3Nm81kBj1/edXLpJActnLeex2iCMcXJk8yAAzF0q+vSHLld0w9Jx95kIJB4tnaonWJxcaWaX58HWFbdOuYKvQhXqcflI4KmNH8xXm/O0FIM8VEJRg9dojZ5S8Us3fZpBFZxVJ3H3Fcb406AmoIqcHOsqJ1GvBM8EdWkwuaH9GsUWf8pydgKFgStYUaKk8DDmJonT748emG4yw+78uMGWPoFxf+Mc8jazRxIaRiQbjVFUcLjaRkRFlL8UT9BB9k7c1egjvKhUo/pqV7KIEsAJrrh6zZIkz4h9AwxWpZjVj9+z63Kh6NC1lUI=
+        gem: edits
+        on:
+          tags: true
+          repo: tcrouch/edits
