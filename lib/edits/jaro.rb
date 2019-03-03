@@ -87,6 +87,7 @@ module Edits
       seq1.length.times do |i|
         # find a match in first string
         next unless seq1_flags[i] == true
+
         # go to location of next match on second string
         j += 1 until seq2_flags[j]
 
