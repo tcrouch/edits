@@ -38,20 +38,17 @@ module Edits
       weight: WINKLER_PREFIX_WEIGHT
     )
 
-      dj = Jaro.similarity(seq1, seq2)
+      sj = Jaro.similarity(seq1, seq2)
+      return sj unless sj > threshold
 
-      if dj > threshold
-        # size of common prefix, max 4
-        max_bound = seq1.length > seq2.length ? seq2.length : seq1.length
-        max_bound = 4 if max_bound > 4
+      # size of common prefix, max 4
+      max_bound = seq1.length > seq2.length ? seq2.length : seq1.length
+      max_bound = 4 if max_bound > 4
 
-        l = 0
-        l += 1 until seq1[l] != seq2[l] || l >= max_bound
+      l = 0
+      l += 1 until seq1[l] != seq2[l] || l >= max_bound
 
-        l < 1 ? dj : dj + (l * weight * (1 - dj))
-      else
-        dj
-      end
+      l < 1 ? sj : sj + (l * weight * (1 - sj))
     end
 
     # Calculate Jaro-Winkler distance
