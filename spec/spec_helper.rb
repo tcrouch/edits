@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require "codacy-coverage"
+Codacy::Reporter.start
+
 require "bundler/setup"
 require "edits"
 
