@@ -1,8 +1,7 @@
 # Edits
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/64cb50b8e9ce4ec2a752d091e441b09d)](https://app.codacy.com/app/t.crouch/edits?utm_source=github.com&utm_medium=referral&utm_content=tcrouch/edits&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.org/tcrouch/edits.svg?branch=master)](https://travis-ci.org/tcrouch/edits)
-[![codebeat badge](https://codebeat.co/badges/005039fa-25c2-4005-8974-97c1ae9ff6eb)](https://codebeat.co/projects/github-com-tcrouch-edits-master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/64cb50b8e9ce4ec2a752d091e441b09d)](https://app.codacy.com/app/t.crouch/edits?utm_source=github.com&utm_medium=referral&utm_content=tcrouch/edits&utm_campaign=Badge_Grade_Dashboard)
 [![Inline docs](http://inch-ci.org/github/tcrouch/edits.svg?branch=master)](http://inch-ci.org/github/tcrouch/edits)
 [![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](http://rubydoc.info/github/tcrouch/edits)
 
