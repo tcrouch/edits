@@ -5,7 +5,7 @@ require "benchmark/ips"
 require "edits"
 
 namespace :benchmark do
-  desc "levenshtein distance vs. distance_with_max (x100)"
+  desc "levenshtein distance vs distance_with_max (x100)"
   task :lev_max do
     words = File.read("/usr/share/dict/words")
       .split(/\n/).compact.shuffle(random: Random.new(1))
@@ -64,7 +64,7 @@ namespace :benchmark do
     end
   end
 
-  desc "restricted distance vs. distance_with_max (x100)"
+  desc "restricted distance vs distance_with_max (x100)"
   task :restricted_max do
     words = File.read("/usr/share/dict/words")
       .split(/\n/).compact.shuffle(random: Random.new(1))
@@ -123,7 +123,7 @@ namespace :benchmark do
     end
   end
 
-  desc "most_similar vs. min_by (100 words)"
+  desc "most_similar vs min_by (100 words)"
   task :lev_similar do
     words = File.read("/usr/share/dict/words")
       .split(/\n/).compact.shuffle(random: Random.new(1))
