@@ -7,6 +7,8 @@ module Edits
   # * Insertion
   # * Deletion
   # * Substitution
+  #
+  # @see https://en.wikipedia.org/wiki/Levenshtein_distance
   module Levenshtein
     extend Compare
 
@@ -14,11 +16,11 @@ module Edits
     #
     # @note A true distance metric, satisfies triangle inequality.
     # @example
-    #   Levenshtein.distance('sand', 'hands')
+    #   Levenshtein.distance("sand", "hands")
     #   # => 2
     # @param seq1 [String, Array]
     # @param seq2 [String, Array]
-    # @return [Integer]
+    # @return [Integer] distance, 0 (identical) or greater (more distant)
     def self.distance(seq1, seq2)
       seq1, seq2 = seq2, seq1 if seq1.length > seq2.length
 
@@ -74,7 +76,7 @@ module Edits
     # @param seq1 [String, Array]
     # @param seq2 [String, Array]
     # @param max [Integer] maximum distance
-    # @return [Integer]
+    # @return [Integer] distance, from 0 (identical) to max (more distant)
     def self.distance_with_max(seq1, seq2, max)
       seq1, seq2 = seq2, seq1 if seq1.length > seq2.length
 

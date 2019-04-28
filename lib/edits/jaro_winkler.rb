@@ -9,7 +9,7 @@ module Edits
     # Should not exceed 0.25 or metric range will leave 0..1
     WINKLER_PREFIX_WEIGHT = 0.1
 
-    # Threshold for boosting Jaro with winkler prefix multiplier.
+    # Threshold for boosting Jaro with Winkler prefix multiplier.
     # Default is 0.7
     WINKLER_THRESHOLD = 0.7
 
@@ -31,7 +31,7 @@ module Edits
     # @param seq2 [String, Array]
     # @param threshold [Float] threshold for applying Winkler prefix weighting
     # @param weight [Float] weighting for common prefix, should not exceed 0.25
-    # @return [Float] similarity, between 0.0 (none) and 1.0 (identical)
+    # @return [Float] similarity, from 0.0 (none) to 1.0 (identical)
     def self.similarity(
       seq1, seq2,
       threshold: WINKLER_THRESHOLD,
@@ -59,7 +59,7 @@ module Edits
     #   Edits::JaroWinkler.distance("information", "informant")
     #   # => 0.05858585858585863
     # @param (see #distance)
-    # @return [Float] distance, between 0.0 (identical) and 1.0 (distant)
+    # @return [Float] distance, from 0.0 (identical) to 1.0 (distant)
     def self.distance(
       seq1, seq2,
       threshold: WINKLER_THRESHOLD,

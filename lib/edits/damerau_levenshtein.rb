@@ -16,7 +16,7 @@ module Edits
     #   # => 3
     # @param seq1 [String, Array]
     # @param seq2 [String, Array]
-    # @return [Integer]
+    # @return [Integer] distance, 0 (identical) or greater (more distant)
     def self.distance(seq1, seq2)
       seq1, seq2 = seq2, seq1 if seq1.length > seq2.length
 

@@ -14,6 +14,7 @@ RSpec.describe Edits::Hamming do
       ["2173896", "2233796", 3],
       ["foo", "bar", 3],
       ["toned", "roses", 3],
+      ["explorer", "exploded", 2],
 
       ["", "abc", 3],
       ["abc", "", 3],

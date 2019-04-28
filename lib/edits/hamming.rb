@@ -8,10 +8,12 @@ module Edits
     # Calculate the Hamming distance between two sequences.
     #
     # @note A true distance metric, satisfies triangle inequality.
-    #
+    # @example
+    #   Edits::Hamming.distance("explorer", "exploded")
+    #   # => 2
     # @param seq1 [String, Array]
     # @param seq2 [String, Array]
-    # @return [Integer] Hamming distance
+    # @return [Integer] distance, 0 (identical) or greater (more distant)
     def self.distance(seq1, seq2)
       # if seq1.is_a?(Integer) && seq2.is_a?(Integer)
       #   return (seq1 ^ seq2).to_s(2).count("1")
