@@ -19,11 +19,15 @@ gem 'edits'
 
 And then execute:
 
-    $ bundle
+```console
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install edits
+```console
+$ gem install edits
+```
 
 ## Usage
 
