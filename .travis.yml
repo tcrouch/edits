@@ -2,10 +2,10 @@ sudo: false
 language: ruby
 cache: bundler
 rvm:
-  - 2.3
   - 2.4
-  - 2.5.3
-  - 2.6
+  - 2.5
+  - 2.6.5
+  - 2.7
   - ruby-head
   - rbx-3
 matrix:
@@ -20,7 +20,7 @@ jobs:
   include:
     - stage: gem release
       if: tag IS present
-      rvm: 2.5.3
+      rvm: 2.6.5
       script: echo "Deploying to rubygems.org ..."
       deploy:
         provider: rubygems
