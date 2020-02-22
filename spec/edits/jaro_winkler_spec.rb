@@ -52,4 +52,28 @@ RSpec.describe Edits::JaroWinkler do
       end
     end
   end
+
+  describe ".distance" do
+    subject { described_class.distance(a, b).round(3) }
+
+    describe "calculation" do
+      subject { described_class.distance("foo", "bar").round(3) }
+
+      before do
+        allow(described_class).to receive(:similarity)
+          .and_return(0.45)
+      end
+
+      it "returns 1 - similarity" do
+        expect(subject).to eq(0.55)
+      end
+    end
+
+    context "with 'information', 'informant'" do
+      let(:a) { "information" }
+      let(:b) { "informant" }
+
+      it { is_expected.to eq(0.059) }
+    end
+  end
 end
