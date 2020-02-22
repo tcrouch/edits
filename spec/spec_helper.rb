@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
-require "codacy-coverage"
-Codacy::Reporter.start
+if ENV["CI"]
+  require "simplecov"
+  require "simplecov-lcov"
+  SimpleCov.formatter = SimpleCov::Formatter::LcovFormatter
+  SimpleCov.start
+end
 
 require "bundler/setup"
 require "edits"
