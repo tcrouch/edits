@@ -28,10 +28,10 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "benchmark-ips", "~> 2.7"
   spec.add_development_dependency "bundler", "~> 2.0"
-  spec.add_development_dependency "simplecov", "~> 0.18"
-  spec.add_development_dependency "simplecov-lcov", "~> 0.8"
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "redcarpet", "~> 3.4"
   spec.add_development_dependency "rspec", "~> 3.6"
+  spec.add_development_dependency "simplecov", "~> 0.18"
+  spec.add_development_dependency "simplecov-lcov", "~> 0.8"
   spec.add_development_dependency "yard", "~> 0.9"
 end

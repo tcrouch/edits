@@ -10,6 +10,7 @@ Metrics/PerceivedComplexity:
   Enabled: false
 Metrics/BlockLength:
   Exclude:
+    - edits.gemspec
     - "tasks/**/*.rake"
 
 Style/StringLiterals:
