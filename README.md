@@ -1,5 +1,6 @@
 # Edits
 
+[![Gem Version](https://img.shields.io/gem/v/edits.svg)](https://rubygems.org/gems/edits)
 [![Build Status](https://travis-ci.org/tcrouch/edits.svg?branch=master)](https://travis-ci.org/tcrouch/edits)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/64cb50b8e9ce4ec2a752d091e441b09d)](https://app.codacy.com/app/t.crouch/edits?utm_source=github.com&utm_medium=referral&utm_content=tcrouch/edits&utm_campaign=Badge_Grade_Dashboard)
 [![Inline docs](http://inch-ci.org/github/tcrouch/edits.svg?branch=master)](http://inch-ci.org/github/tcrouch/edits)
