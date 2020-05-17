@@ -25,7 +25,7 @@ module Edits
       seq2 = seq2.codepoints if seq2.is_a? String
 
       m, t = jaro_matches(seq1, seq2)
-      return 0.0 if m.zero?
+      return 0.0 if m == 0
 
       m = m.to_f
       ((m / seq1.length) + (m / seq2.length) + ((m - t) / m)) / 3
@@ -78,7 +78,7 @@ module Edits
         end
       end
 
-      return [0, 0] if matches.zero?
+      return [0, 0] if matches == 0
 
       transposes = 0
       j = 0

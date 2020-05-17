@@ -30,8 +30,8 @@ module Edits
 
       rows = seq1.length
       cols = seq2.length
-      return cols if rows.zero?
-      return rows if cols.zero?
+      return cols if rows == 0
+      return rows if cols == 0
 
       # Initialize first row of cost matrix.
       # The full initial state where cols=3, rows=2 would be:
@@ -82,8 +82,8 @@ module Edits
 
       rows = seq1.length
       cols = seq2.length
-      return cols > max ? max : cols if rows.zero?
-      return rows > max ? max : rows if cols.zero?
+      return cols > max ? max : cols if rows == 0
+      return rows > max ? max : rows if cols == 0
       return max if (cols - rows) >= max
 
       # array of codepoints outperforms String
@@ -103,7 +103,7 @@ module Edits
         max_col = row + max
         max_col = cols - 1 if max_col > cols - 1
 
-        prev_col_cost = min_col.zero? ? row + 1 : inf
+        prev_col_cost = min_col == 0 ? row + 1 : inf
         seq1_item = seq1[row]
         diagonal = cols - rows + row
 

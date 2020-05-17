@@ -26,8 +26,8 @@ module Edits
 
       rows = seq1.length
       cols = seq2.length
-      return cols if rows.zero?
-      return rows if cols.zero?
+      return cols if rows == 0
+      return rows if cols == 0
 
       # 'infinite' edit distance for padding cost matrix.
       # Can be any value > max[rows, cols]
@@ -78,7 +78,7 @@ module Edits
 
           matrix[row + 1][col + 1] = cost
 
-          last_match_col = col if sub_cost.zero?
+          last_match_col = col if sub_cost == 0
         end
 
         item_history[seq1_item] = row

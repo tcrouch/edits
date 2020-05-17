@@ -34,8 +34,8 @@ module Edits
 
       rows = seq1.length
       cols = seq2.length
-      return cols if rows.zero?
-      return rows if cols.zero?
+      return cols if rows == 0
+      return rows if cols == 0
 
       # retain previous two rows of cost matrix
       lastlast_row = []
@@ -57,8 +57,8 @@ module Edits
 
         cols.times do |col|
           sub_cost = seq1_item == seq2[col] ? 0 : 1
-          is_swap = sub_cost.positive? &&
-            row.positive? && col.positive? &&
+          is_swap = sub_cost > 0 &&
+            row > 0 && col > 0 &&
             seq1_item == seq2[col - 1] &&
             seq1[row - 1] == seq2[col]
 
@@ -102,8 +102,8 @@ module Edits
 
       rows = seq1.length
       cols = seq2.length
-      return cols > max ? max : cols if rows.zero?
-      return rows > max ? max : rows if cols.zero?
+      return cols > max ? max : cols if rows == 0
+      return rows > max ? max : rows if cols == 0
       return max if (cols - rows) >= max
 
       # array of codepoints outperforms String
@@ -129,7 +129,7 @@ module Edits
         max_col = row + max
         max_col = cols - 1 if max_col > cols - 1
 
-        curr_row[min_col] = min_col.zero? ? row + 1 : inf
+        curr_row[min_col] = min_col == 0 ? row + 1 : inf
         seq1_item = seq1[row]
         diagonal = cols - rows + row
 
@@ -137,8 +137,8 @@ module Edits
           return max if diagonal == col && last_row[col] >= max
 
           sub_cost = seq1_item == seq2[col] ? 0 : 1
-          is_swap = sub_cost.positive? &&
-            row.positive? && col.positive? &&
+          is_swap = sub_cost > 0 &&
+            row > 0 && col > 0 &&
             seq1_item == seq2[col - 1] &&
             seq1[row - 1] == seq2[col]
 
