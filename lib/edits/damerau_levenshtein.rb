@@ -21,70 +21,66 @@ module Edits
       seq1, seq2 = seq2, seq1 if seq1.length > seq2.length
 
       # array of codepoints outperforms String
-      seq1 = seq1.codepoints if seq1.is_a? String
-      seq2 = seq2.codepoints if seq2.is_a? String
+      if seq1.is_a?(String) && seq2.is_a?(String)
+        seq1 = seq1.codepoints
+        seq2 = seq2.codepoints
+      end
 
       rows = seq1.length
       cols = seq2.length
       return cols if rows == 0
       return rows if cols == 0
 
-      # 'infinite' edit distance for padding cost matrix.
-      # Can be any value > max[rows, cols]
-      inf = rows + cols
-
-      # Initialize first two rows of cost matrix.
-      # The full initial state where cols=3, rows=2 (inf=5) would be:
-      #   [[5, 5, 5, 5, 5],
-      #    [5, 0, 1, 2, 3],
-      #    [5, 1, 0, 0, 0],
-      #    [5, 2, 0, 0, 0]]
-      matrix = [Array.new(cols + 2, inf)]
-      matrix << 0.upto(cols).to_a.unshift(inf)
+      # 'infinite' edit distance to pad cost matrix.
+      # Any value > max[rows, cols]
+      inf = cols + 1
 
       # element => last row seen
-      item_history = Hash.new(0)
+      row_history = Hash.new(0)
 
-      1.upto(rows) do |row|
-        # generate next row of cost matrix
-        new_row = Array.new(cols + 2, 0)
-        new_row[0] = inf
-        new_row[1] = row
-        matrix << new_row
+      # initialize alphabet-keyed cost matrix
+      matrix = {}
+      curr_row = 0.upto(cols).to_a
 
-        last_match_col = 0
-        seq1_item = seq1[row - 1]
+      rows.times do |row|
+        seq1_item = seq1[row]
+        match_col = 0
 
-        1.upto(cols) do |col|
-          seq2_item = seq2[col - 1]
-          last_match_row = item_history[seq2_item]
+        # rotate row arrays & generate next
+        matrix[seq1_item] = last_row = curr_row
+        curr_row = Array.new(cols + 1, inf)
+        curr_row[0] = row + 1
 
+        cols.times do |col|
+          seq2_item = seq2[col]
           sub_cost = seq1_item == seq2_item ? 0 : 1
 
-          transposition = 1 + matrix[last_match_row][last_match_col]
-          transposition += row - last_match_row - 1
-          transposition += col - last_match_col - 1
-
-          # TODO: do insertion/deletion need to be considered when
-          # seq1_item == seq2_item ?
-          #
-          # substitution, deletion, insertion, transposition
+          # | Xs | Xd |
+          # | Xi | ?  |
+          # substitution, deletion, insertion
           cost = [
-            matrix[row][col] + sub_cost,
-            matrix[row][col + 1] + 1,
-            matrix[row + 1][col] + 1,
-            transposition
+            last_row[col] + sub_cost,
+            last_row[col + 1] + 1,
+            curr_row[col] + 1
           ].min
 
-          matrix[row + 1][col + 1] = cost
+          # transposition cost
+          # skip missed matrix lookup (inf cost)
+          if sub_cost > 0 && row > 0 && (m = matrix[seq2_item])
+            transpose = 1 + m[match_col] \
+              + (row - row_history[seq2_item] - 1) \
+              + (col - match_col - 1)
+            cost = transpose if transpose < cost
+          end
 
-          last_match_col = col if sub_cost == 0
+          match_col = col if sub_cost == 0
+          curr_row[col + 1] = cost
         end
 
-        item_history[seq1_item] = row
+        row_history[seq1_item] = row
       end
 
-      matrix[rows + 1][cols + 1]
+      curr_row[cols]
     end
   end
 end
