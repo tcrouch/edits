@@ -1,10 +1,10 @@
 # Edits
 
-[![Gem Version](https://img.shields.io/gem/v/edits.svg)](https://rubygems.org/gems/edits)
-[![Build Status](https://travis-ci.org/tcrouch/edits.svg?branch=master)](https://travis-ci.org/tcrouch/edits)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/64cb50b8e9ce4ec2a752d091e441b09d)](https://app.codacy.com/app/t.crouch/edits?utm_source=github.com&utm_medium=referral&utm_content=tcrouch/edits&utm_campaign=Badge_Grade_Dashboard)
-[![Inline docs](http://inch-ci.org/github/tcrouch/edits.svg?branch=master)](http://inch-ci.org/github/tcrouch/edits)
-[![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](http://rubydoc.info/github/tcrouch/edits)
+[![Gem](https://img.shields.io/gem/v/edits)](https://rubygems.org/gems/edits)
+[![Travis (.com)](https://img.shields.io/travis/com/tcrouch/edits)](https://travis-ci.com/github/tcrouch/edits)
+[![Codacy grade](https://img.shields.io/codacy/grade/64cb50b8e9ce4ec2a752d091e441b09d)](https://app.codacy.com/app/t.crouch/edits)
+[![Inline docs](http://inch-ci.org/github/tcrouch/edits.svg?branch=master)](https://inch-ci.org/github/tcrouch/edits)
+[![Yard Docs](https://img.shields.io/badge/yard-docs-informational)](https://rubydoc.info/github/tcrouch/edits)
 
 A collection of edit distance algorithms in Ruby.
 
