@@ -2,10 +2,10 @@ os: linux
 language: ruby
 cache: bundler
 rvm:
-  - 2.4
   - 2.5
   - 2.6.5
   - 2.7
+  - 3.0
   - ruby-head
   - rbx-3
 before_install:
