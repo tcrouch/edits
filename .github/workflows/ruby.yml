@@ -26,7 +26,8 @@ jobs:
     continue-on-error: ${{ matrix.allow-failure }}
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout 🛎
+      uses: actions/checkout@v2
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
@@ -34,7 +35,7 @@ jobs:
         bundler-cache: true
     - name: Run tests
       run: bundle exec rake
-    - name: Run codacy-coverage-reporter
+    - name: Run codacy-coverage-reporter 📈
       uses: codacy/codacy-coverage-reporter-action@v1
       with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
