@@ -34,3 +34,5 @@ jobs:
         bundler-cache: true
     - name: Run tests
       run: bundle exec rake
+    - name: Run codacy-coverage-reporter
+      uses: codacy/codacy-coverage-reporter-action@v1
