@@ -18,10 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ['2.6', '2.7', '3.0', '3.1']
+        ruby-version: ["2.6", "2.7", "3.0", "3.1"]
         allow-failure: [false]
         include:
-          - ruby-version: 'ruby-head'
+          - ruby-version: "ruby-head"
             allow-failure: true
     continue-on-error: ${{ matrix.allow-failure }}
 
