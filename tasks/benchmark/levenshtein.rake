@@ -162,7 +162,7 @@ namespace :benchmark do
 
       x.report "literal, +" do
         m = []
-        m << [rows] + Array.new(cols, 0)
+        m << ([rows] + Array.new(cols, 0))
       end
 
       x.compare!
@@ -195,7 +195,7 @@ namespace :benchmark do
 
       x.report "literal, +" do
         m = []
-        m << [rows, inf] + Array.new(cols, 0)
+        m << ([rows, inf] + Array.new(cols, 0))
       end
 
       x.compare!
