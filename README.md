@@ -1,7 +1,7 @@
 # Edits
 
 [![Gem](https://img.shields.io/gem/v/edits)](https://rubygems.org/gems/edits)
-[![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/tcrouch/edits/Ruby/main)](https://github.com/tcrouch/edits/actions/workflows/ruby.yml)
+[![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/tcrouch/edits/ruby.yml)](https://github.com/tcrouch/edits/actions/workflows/ruby.yml)
 [![Inline docs](http://inch-ci.org/github/tcrouch/edits.svg?branch=master)](https://inch-ci.org/github/tcrouch/edits)
 [![Yard Docs](https://img.shields.io/badge/yard-docs-informational)](https://rubydoc.info/github/tcrouch/edits)
 
