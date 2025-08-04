@@ -65,7 +65,7 @@ module Edits
       threshold: WINKLER_THRESHOLD,
       weight: WINKLER_PREFIX_WEIGHT
     )
-      1.0 - similarity(seq1, seq2, threshold: threshold, weight: weight)
+      1.0 - similarity(seq1, seq2, threshold:, weight:)
     end
   end
 end

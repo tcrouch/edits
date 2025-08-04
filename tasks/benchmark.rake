@@ -6,7 +6,7 @@ require "edits"
 desc "Compare metrics"
 task :benchmark do
   words = File.read("/usr/share/dict/words")
-    .split(/\n/).compact.shuffle(random: Random.new(1))
+    .split("\n").compact.shuffle(random: Random.new(1))
 
   Benchmark.bm(20) do |x|
     x.report("Hamming") do
